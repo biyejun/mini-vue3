@@ -7,12 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "generate:md": "node scripts/generate-md"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.9.4",
+    "fast-glob": "^3.3.2",
     "vitepress": "1.0.0-rc.27"
   }
 }
