@@ -14,6 +14,7 @@ fg.sync('videos/*').forEach((fileName) => {
 
   if (fs.existsSync(outputFilePath)) {
     console.log(resultFileName, '已存在');
+    return;
   }
   fs.writeFileSync(outputFilePath, data, 'utf-8');
 });
