@@ -4,18 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "generate:md": "node scripts/generate-md"
+    "generate:md": "node scripts/generate-md",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@types/jest": "^29.5.10",
     "@types/node": "^20.9.4",
+    "babel-jest": "^29.7.0",
     "fast-glob": "^3.3.2",
+    "jest": "^29.7.0",
+    "typescript": "^5.3.2",
     "vitepress": "1.0.0-rc.27"
   }
 }
