@@ -1,1 +1,56 @@
 # 03-runtime-core 初始化的核心流程 
+
+- 开始
+  - 创建APP
+  - 进行初始化
+    - 基于rootComponent生成vnode
+    - 进行render
+      - 调用patch
+        - 基于 vnode 的类型进行不同类型的逻辑处理
+          - 处理 shapeFlag & shapeFlags.COMPONENT类型
+            - 组件初始化
+              - 1. 创建 component instance 对象
+              - 2. setup component
+                - 初始化 props
+                - 初始化 slots
+                - 初始化 setup()
+                - 设置 render() 函数
+              - 3. setupRenderEffect
+                - 1. 调用 render() 函数 获取 vnode (子组件)
+                - 2. 触发生命周期 beforeMount hook
+                - 3. 调用 patch 初始化 子组件 (递归)
+                - 4. 触发生命周期 mounted hook
+            - 组件更新
+              - 检测是否需要更新
+              - 提前更新 组件 (component) 的数据
+                - 更新 props
+                - 更新 slots
+              - 生成最新的 subtree
+              - 调用patch处理subtree (递归)
+          - 处理 shapeFlag & shapes.ELEMENT 类型
+            - element初始化
+              - 1. 调用hostCreateElement()创建真实的element
+              - 2. 处理children节点
+                - 文本类型调用 hostSetElementText()
+                - 数组类型调用 patch
+              - 3. 调用hostPatchProps() 设置元素的props
+              - 4. 触发beforeMount()钩子
+                - vnodeHooks (虚拟节点)
+                  - onVnodeBeforeMount
+                - DirectiveHook (指令)
+                  - beforeMount
+                - transition (动画)
+                  - beforeEnter
+              - 5. 渲染hostInsert
+                - 插入真实的dom树
+              - 6. 触发Mounted()钩子
+                - vnodeHook(虚拟节点)
+                  - onVnodeMounted
+                - DirectiveHook(指令)
+                  - mounted
+                - transition(动画)
+                  - enter
+            - element 更新
+              - 对比 props
+              - 对比 children
+                - 遍历所有的 child 调用 patch (递归)
