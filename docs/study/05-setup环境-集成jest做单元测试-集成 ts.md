@@ -1,5 +1,10 @@
 # 05-setup环境-集成jest做单元测试-集成 ts
 
+vscode安装插件
+- jest
+- jest Runner
+
+
 使用 monorepo 管理项目
 
 `pnpm init`
